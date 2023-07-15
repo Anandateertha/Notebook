@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/NoteContext'
 import NoteItem from './NoteItem'
 import AddNote from './AddNote'
+import '../styles/Notes.css'
 
 const Notes = () => {
     const context = useContext(noteContext)
@@ -41,20 +42,20 @@ const Notes = () => {
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
-                    <div className="modal-content">
+                    <div className="modal-content back">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
+                            <h5 className="modal-title text" id="exampleModalLabel">Edit Note</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body text">
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" name='etitle' aria-describedby="emailHelp" onChange={handleChange} value={note.etitle} />
+                                    <input type="text" className="form-control" id="etitle" name='etitle' aria-describedby="emailHelp" onChange={handleChange} value={note.etitle} minLength={5} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
-                                    <input type="text" className="form-control" id="edescription" name='edescription' onChange={handleChange} value={note.edescription} />
+                                    <input type="text" className="form-control" id="edescription" name='edescription' onChange={handleChange} value={note.edescription} minLength={5} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tag</label>
@@ -69,9 +70,9 @@ const Notes = () => {
                     </div>
                 </div>
             </div>
-            <div className="row my-3">
-                <h1>Your Note's</h1>
-                {notes.map((note) => {
+            <div className="row my-3 text">
+                <h2>Your Note's</h2>
+                {notes.length === 0 ? "No notes to be dispalyed" : notes.map((note) => {
                     return <NoteItem key={note._id} updateNote={updateNote} note={note} />
                 })}
             </div>
