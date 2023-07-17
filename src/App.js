@@ -17,7 +17,7 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <Navbar name={"iNotebook Practice"} />
+          <Navbar name={"Notebook"} />
           <Alert/>
           <Routes>
             <Route exact path='/' element={<Home />} />
