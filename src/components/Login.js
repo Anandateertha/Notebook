@@ -38,16 +38,17 @@ const Login = () => {
 
 
     return (
-        <div className='text'>
+        <div className='container text mx-auto' >
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange}/>
+                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} style={{ width: '30%' }}/>
                         <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name='password' onChange={onChange} />
+                    <input type="password" className="form-control" id="password" name='password' onChange={onChange} style={{ width: '30%' }}/>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>

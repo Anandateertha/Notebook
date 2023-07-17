@@ -1,18 +1,15 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation,useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const Navbar = (props) => {
 
     let location = useLocation();
-    let log=document.getElementById('log')
-
-    if (location.pathname === '/') {
-        log.innerText='Logout'
-    }
-    else
-    {
-        log.innerText='LogIn'
+    const navigate=useNavigate(0)
+  
+    const logout=()=>{
+        localStorage.removeItem('token')
+        navigate('/login')
     }
 
     return (
@@ -31,11 +28,13 @@ const Navbar = (props) => {
                             <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <Link className="btn btn-primary mx-1" to="/login" id='log' role="button">Login</Link>
-                    <Link className={`btn btn-primary mx-1  ${location.pathname==='/'?"d-none":""}`} to="/signup" role="button">Sign up</Link>
+                    {!localStorage.getItem('token') ? <form className='d-flex'>
+                        <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
+                        <Link className='btn btn-primary mx-1' to="/signup" role="button">Sign up</Link>
+                    </form>:<button onClick={logout} className='btn btn-primary'>Log out</button>}
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 }
 
