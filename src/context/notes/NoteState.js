@@ -6,6 +6,8 @@ const NoteState = (props) => {
 
     const host = 'http://localhost:5000';
 
+    let count;
+
     const notesInitial = []
     const [notes, setnotes] = useState(notesInitial)
 
@@ -106,7 +108,7 @@ const NoteState = (props) => {
 
     return (
 
-        <NoteContext.Provider value={{ notes, addnote, deletenote, editnote, getnotes,alert }}>
+        <NoteContext.Provider value={{ notes, addnote, deletenote, editnote, getnotes,alert}}>
             {props.children}
         </NoteContext.Provider>
     )

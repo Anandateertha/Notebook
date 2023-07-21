@@ -1,16 +1,39 @@
-import React from 'react'
-import { Link, useLocation,useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const Navbar = (props) => {
 
     let location = useLocation();
-    const navigate=useNavigate(0)
-  
-    const logout=()=>{
+    const navigate = useNavigate()
+
+    const [condition, setcondition] = useState({
+        li:"/account",
+        name:"Your Account"
+    })
+
+
+    const logout = () => {
         localStorage.removeItem('token')
         navigate('/login')
     }
+
+    const handleClick=()=>{
+        if (location.pathname==='/account') {
+            setcondition({
+                li:'/',
+                name:'Your Account'
+            })
+        }
+        else
+        {
+            setcondition({
+                li:'/account',
+                name:'Back to Notes'
+            })
+        }
+    }
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark text">
@@ -28,10 +51,11 @@ const Navbar = (props) => {
                             <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
+                    <Link onFocus={handleClick} className="btn btn-primary mx-1" to={`${condition.li}`} role="button">{condition.name}</Link>
                     {!localStorage.getItem('token') ? <form className='d-flex'>
                         <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
                         <Link className='btn btn-primary mx-1' to="/signup" role="button">Sign up</Link>
-                    </form>:<button onClick={logout} className='btn btn-primary'>Log out</button>}
+                    </form> : <button onClick={logout} className='btn btn-primary'>Log out</button>}
                 </div>
             </div>
         </nav >

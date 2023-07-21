@@ -60,7 +60,7 @@ const Signup = () => {
                     <label htmlFor="confirmpassword" className="form-label">Confirm Password</label>
                     <input type="password" className="form-control" id="confirmpassword" name='confirmpassword' onChange={onChange} />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button disabled={start.password===start.confirmpassword?false:true}type="submit" className="btn btn-primary">Submit</button>
             </form>
 
         </div>
